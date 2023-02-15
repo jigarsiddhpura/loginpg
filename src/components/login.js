@@ -272,18 +272,18 @@ const Login = () => {
     opacity: registrationFStatus ? 0 : 1,
     from: {
       opacity: 0,
-      transform: registrationFStatus ? "translateX(50vw)" : "translateX(100vw)",
+      transform: registrationFStatus ? "translateX(100vw)" : "translateX(50vw)",
     },
     to: {
       opacity: 1,
-      transform: registrationFStatus ? "translateX(0vw)" : "translateX(0vw)",
+      transform: registrationFStatus ? "translateX(50vw)" : "translateX(0vw)",
     },
     // from: { opacity: 0 },
     // enter: { opacity: 1 }
     // leave: { opacity: 0 },
     config: {
       duration: registrationFStatus ? flipDur + 1000 : flipDur + 2000,
-      delay: 800,
+      // delay: 800,
     },
     // config:{duration:flipDur}
   });
