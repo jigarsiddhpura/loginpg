@@ -282,7 +282,7 @@ const Login = () => {
     // enter: { opacity: 1 }
     // leave: { opacity: 0 },
     config: {
-      duration: registrationFStatus ? flipDur + 1000 : flipDur + 2000,
+      duration: registrationFStatus ? flipDur - 500 : flipDur ,
       // delay: 800,
     },
     // config:{duration:flipDur}
@@ -303,8 +303,8 @@ const Login = () => {
     // enter: { opacity: 1 },
     // leave: { opacity: 0 },
     config: {
-      duration: registrationFStatus ? flipDur + 1000 : flipDur,
-      delay: 800,
+      duration: registrationFStatus ? flipDur  : flipDur - 500 ,
+      // delay: 800,
     },
     // config:{duration:flipDur}
   });
@@ -416,6 +416,7 @@ const Login = () => {
                       color: color,
                       margin: "0 0.7rem",
                     }}
+                    onClick={changeFRegStat}
                   >
                     Sign Up
                   </a>
@@ -423,7 +424,7 @@ const Login = () => {
 
                 <div style={{ display: "flex" }}>
                   {/* <Link to="/password-reset"> */}
-                  <ChangeButton onClick={changeFRegStat}>
+                  <ChangeButton>
                     Forgot Password
                   </ChangeButton>
                   <SignupButton type="submit">Log in</SignupButton>
@@ -483,7 +484,8 @@ const Login = () => {
                 <h1 style={{ margin: "4px 0" }}>Create new account</h1>
                 <span style={{ color: "gray" }}>
                   Already A Member?{" "}
-                  <a href="#" style={{ textDecoration: "none", color: color }}>
+                  <a href="#" style={{ textDecoration: "none", color: color }}
+                  onClick={changeFRegStat}>
                     Log in
                   </a>{" "}
                 </span>
@@ -563,7 +565,7 @@ const Login = () => {
                 </FormControl>
                 <p className="error_message">{errorS.email}</p>
                 <div style={{ display: "flex" }}>
-                  <ChangeButton onClick={changeFRegStat}>
+                  <ChangeButton >
                     Change method
                   </ChangeButton>
                   <SignupButton
