@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState  } from "react";
 import {
   Box,
   Button,
@@ -47,7 +47,7 @@ const defaultValue = {
   password: "",
 };
 
-const SignupDefaultValue = {
+const signupDefaultValue = {
   firstName: "",
   lastName: "",
   email: "",
@@ -171,6 +171,13 @@ const Login = () => {
 
   // signup func start
 
+  const [signupUser, setSignupUser] = useState(signupDefaultValue);
+
+  const signupHandleChange = (e) => {
+    console.log(e.target.name, e.target.value);
+    setSignupUser({ ...signupUser, [e.target.name]: e.target.value });
+  };
+
   // const signupHandleSubmit = async (e) => {
   //   e.preventDefault();
   //   console.log(user);
@@ -282,7 +289,7 @@ const Login = () => {
     // enter: { opacity: 1 }
     // leave: { opacity: 0 },
     config: {
-      duration: registrationFStatus ? flipDur - 500 : flipDur ,
+      duration: registrationFStatus ? flipDur - 500 : flipDur,
       // delay: 800,
     },
     // config:{duration:flipDur}
@@ -303,7 +310,7 @@ const Login = () => {
     // enter: { opacity: 1 },
     // leave: { opacity: 0 },
     config: {
-      duration: registrationFStatus ? flipDur  : flipDur - 500 ,
+      duration: registrationFStatus ? flipDur : flipDur - 500,
       // delay: 800,
     },
     // config:{duration:flipDur}
@@ -375,17 +382,25 @@ const Login = () => {
                     label="Email"
                     placeholder="Email"
                     name="email"
-                    //   value={user.email}
+                    value={user.email}
                     onChange={handleChange}
                   />
                 </FormControl>
-                <FormControl sx={{ width: "50ch" }} variant="outlined">
+                <FormControl
+                  sx={{ width: "50ch" }}
+                  variant="outlined"
+                  value={user.password}
+                  onChange={handleChange}
+                  required
+                >
                   <InputLabel htmlFor="outlined-adornment-password">
                     Password
                   </InputLabel>
                   <OutlinedInput
                     id="outlined-adornment-password"
                     type={showPassword ? "text" : "password"}
+                    label="Password"
+                    name="password"
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
@@ -398,11 +413,6 @@ const Login = () => {
                         </IconButton>
                       </InputAdornment>
                     }
-                    label="Password"
-                    name="password"
-                    value={user.password}
-                    onChange={handleChange}
-                    required
                   />
                 </FormControl>
                 <p className="error_message">{errorS.password}</p>
@@ -424,9 +434,7 @@ const Login = () => {
 
                 <div style={{ display: "flex" }}>
                   {/* <Link to="/password-reset"> */}
-                  <ChangeButton>
-                    Forgot Password
-                  </ChangeButton>
+                  <ChangeButton>Forgot Password</ChangeButton>
                   <SignupButton type="submit">Log in</SignupButton>
                   {/* </Link> */}
                 </div>
@@ -484,38 +492,47 @@ const Login = () => {
                 <h1 style={{ margin: "4px 0" }}>Create new account</h1>
                 <span style={{ color: "gray" }}>
                   Already A Member?{" "}
-                  <a href="#" style={{ textDecoration: "none", color: color }}
-                  onClick={changeFRegStat}>
+                  <a
+                    href="#"
+                    style={{ textDecoration: "none", color: color }}
+                    onClick={changeFRegStat}
+                  >
                     Log in
                   </a>{" "}
                 </span>
                 <div style={{ display: "flex" }}>
                   <TextField
-                    id=""
+                    id="name"
                     required
                     type="text"
                     label="FirstName"
                     placeholder="First Name"
                     name="fname"
-                    value={user.fname}
-                    onChange={handleChange}
+                    value={signupUser.fname}
+                    onChange={signupHandleChange}
                     style={{ margin: "1rem 0" }}
                   />
                   <p className="error_message">{errorS.fname}</p>
                   <TextField
-                    id=""
+                    id="lname"
                     type="text"
                     label="Lastname"
                     placeholder="Last Name"
                     name="lname"
-                    value={user.lname}
-                    onChange={handleChange}
+                    value={signupUser.lname}
+                    onChange={signupHandleChange}
                     required
                     style={{ margin: "1rem " }}
                   />
                   <p className="error_message">{errorS.lname}</p>
                 </div>
-                <FormControl sx={{ width: "50ch" }} variant="outlined">
+                <FormControl
+                  sx={{ width: "50ch" }}
+                  variant="outlined"
+                  value={signupUser.password}
+                  onChange={signupHandleChange}
+                  required
+                >
                   <InputLabel htmlFor="outlined-adornment-password">
                     Password
                   </InputLabel>
@@ -558,19 +575,15 @@ const Login = () => {
                     label="Email"
                     placeholder="Email"
                     name="email"
-                    value={user.email}
-                    onChange={handleChange}
+                    value={setSignupUser.email}
+                    onChange={signupHandleChange}
                     required
                   />
                 </FormControl>
                 <p className="error_message">{errorS.email}</p>
                 <div style={{ display: "flex" }}>
-                  <ChangeButton >
-                    Change method
-                  </ChangeButton>
-                  <SignupButton
-                  type="submit"
-                  >Create account</SignupButton>
+                  <ChangeButton>Change method</ChangeButton>
+                  <SignupButton type="submit">Create account</SignupButton>
                 </div>
               </Box>
             </form>
