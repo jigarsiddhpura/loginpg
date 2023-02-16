@@ -71,13 +71,12 @@ const Login = () => {
     setWindowWidth(width);
   };
 
-  const responsiveness = { responsive: width < 1000 };
+  const responsiveness = { responsive: width < 1053 };
   const resp = responsiveness.responsive;
   //
 
   // login pg func start
 
-  //   const navigate = useNavigate();
   const [user, setUser] = useState(defaultValue);
 
   const [errorS, setError] = useState({});
@@ -90,64 +89,6 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  //   const handleMouseDownPassword = (
-  //     event: React.MouseEvent<HTMLButtonElement>
-  //   ) => {
-  //     event.preventDefault();
-  //   };
-
-  //   const handleSubmit = async (e) => {
-  //     // console.log("Handle submit")
-  //     e.preventDefault();
-  //     // console.log(user)
-  //     console.log("before validate");
-  //     setError(validate(user));
-  //     console.log("after validate");
-  //     console.log(errorS);
-  //     console.log("after printing error");
-
-  //     console.log(user);
-  //     console.log("before fetch api ");
-
-  //     var myHeaders = new Headers();
-  //     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-  //     var urlencoded = new URLSearchParams();
-  //     urlencoded.append("email", user.email);
-  //     urlencoded.append("password", user.password);
-
-  //     var requestOptions = {
-  //       method: 'POST',
-  //       headers: myHeaders,
-  //       body: urlencoded,
-  //       redirect: 'follow'
-  //     };
-  //     fetch("http://localhost:3000/login", requestOptions)
-  //       .then(response => {
-  //         localStorage.removeItem("secret_token");
-  //         localStorage.removeItem("isVerified");
-  //         localStorage.removeItem("email");
-  //         return response.json();
-  //       })
-  //       .then(result => {
-  //         console.log(result);
-  //         localStorage.setItem("secret_token", result.token);
-  //         localStorage.setItem("isVerified", result.isVerified);
-  //         localStorage.setItem("email",user.email);
-  //         return result;
-  //       })
-  //       .then(r => {
-  //         if (r.token) {
-  //           if (r.access_lvl === "worker")
-  //             return navigate('/worker/profile');
-  //           else if (r.access_lvl === "client")
-  //             return navigate('/client/profile');
-  //           else if (r.access_lvl === "admin")
-  //             return navigate('/admin/dashboard');
-  //         }
-  //       })
-  //       .catch(err => console.log('error', err));
-  //   };
 
   const validate = (values) => {
     const errors = {};
@@ -178,33 +119,6 @@ const Login = () => {
     setSignupUser({ ...signupUser, [e.target.name]: e.target.value });
   };
 
-  // const signupHandleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   console.log(user);
-  //   console.log("handleSubmit");
-  //   setError(validate(user));
-  //   var myHeaders = new Headers();
-  //   myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-  //   var urlencoded = new URLSearchParams();
-  //   urlencoded.append("fname",user.fname);
-  //   urlencoded.append("lname",user.lname);
-  //   urlencoded.append("email", user.email);
-  //   urlencoded.append("password", user.password);
-
-  //   var requestOptions = {
-  //     method: 'POST',
-  //     headers: myHeaders,
-  //     body: urlencoded,
-  //     redirect: 'follow'
-  //   };
-
-  //   fetch("http://localhost:3000/signup/worker", requestOptions)
-  //     .then(response => response.text())
-  //     .then(result => console.log(result))
-  //     .catch(err => console.log('error', err));
-  // };
-
   const signupValidate = (values) => {
     const errors = {};
     const regex = /^w+[+.w-]*@([w-]+.)*w+[w-]*.([a-z]{2,4}|d+)$/i;
@@ -230,7 +144,7 @@ const Login = () => {
   // signup func end
 
   const SignupButton = styled(Button)({
-    backgroundColor: "blue",
+    backgroundColor: "#2E2532",
     margin: "1rem",
     borderRadius: "3rem",
     marginLeft: "1.2rem",
@@ -243,7 +157,7 @@ const Login = () => {
   });
 
   const ChangeButton = styled(Button)({
-    backgroundColor: "gray",
+    backgroundColor: "#9E4770",
     margin: "1rem",
     borderRadius: "3rem",
     marginLeft: "1.2rem",
@@ -263,7 +177,7 @@ const Login = () => {
   const changeRegStat = () => {
     setTimeout(() => {
       setRegistrationStatus(!registrationStatus);
-    }, 1110);
+    }, 50);
   };
   const changeFRegStat = () => {
     setFRegistrationStatus(!registrationFStatus);
@@ -275,7 +189,6 @@ const Login = () => {
   const AnimatedGrid = animated(Grid);
   //   login img
   const trails = useTrail(1, {
-    // rotateX: registrationFStatus ? 90 : 180,
     opacity: registrationFStatus ? 0 : 1,
     from: {
       opacity: 0,
@@ -285,35 +198,24 @@ const Login = () => {
       opacity: 1,
       transform: registrationFStatus ? "translateX(50vw)" : "translateX(0vw)",
     },
-    // from: { opacity: 0 },
-    // enter: { opacity: 1 }
-    // leave: { opacity: 0 },
     config: {
-      duration: registrationFStatus ? flipDur - 500 : flipDur,
-      // delay: 800,
+      duration: registrationFStatus ? flipDur  : flipDur,
     },
-    // config:{duration:flipDur}
   });
   // signup img
   const trails2 = useTrail(1, {
-    // rotateX: registrationFStatus ? 0 : 90,
     opacity: registrationFStatus ? 1 : 0,
     from: {
       opacity: 0,
-      transform: registrationFStatus ? "" : "translateX(0vw)",
+      transform: registrationFStatus ? "translateX(-50vw)" : "translateX(0vw)",
     },
     to: {
       opacity: 1,
-      transform: registrationFStatus ? "" : "translateX(50vw)",
+      transform: registrationFStatus ? "translateX(0vw)" : "translateX(50vw)",
     },
-    // from: { opacity: 0 },
-    // enter: { opacity: 1 },
-    // leave: { opacity: 0 },
     config: {
       duration: registrationFStatus ? flipDur : flipDur - 500,
-      // delay: 800,
     },
-    // config:{duration:flipDur}
   });
   const formTrails = useTrail(1, {
     display: "flex",
@@ -354,10 +256,10 @@ const Login = () => {
                   maxWidth: 500,
                   width: 500,
                   height: 500,
-                  //   border: "2px solid black",
+                    // border: "2px solid black",
                   display: "flex",
                   flexDirection: "column",
-                  alignItems: "flex-start",
+                  alignItems:  resp ? "center" : "flex-start",
                   padding: "1rem",
                 }}
               >
@@ -365,7 +267,7 @@ const Login = () => {
                 <h1 style={{ margin: "4px 0" }}>Welcome back!</h1>
 
                 <FormControl
-                  style={{ margin: "1rem 0", width: "50ch" }}
+                  style={{ margin: "1rem 0", width: resp ? "40ch" : "50ch" }}
                   variant="outlined"
                 >
                   <InputLabel htmlFor="outlined-adornment-password">
@@ -387,7 +289,7 @@ const Login = () => {
                   />
                 </FormControl>
                 <FormControl
-                  sx={{ width: "50ch" }}
+                  sx={{ width:  resp ? "40ch" : "50ch" }}
                   variant="outlined"
                   value={user.password}
                   onChange={handleChange}
@@ -484,7 +386,7 @@ const Login = () => {
                   //   border: "2px solid black",
                   display: "flex",
                   flexDirection: "column",
-                  alignItems: "flex-start",
+                  alignItems: resp ? "center" : "flex-start",
                   padding: "1rem",
                 }}
               >
@@ -510,7 +412,7 @@ const Login = () => {
                     name="fname"
                     value={signupUser.fname}
                     onChange={signupHandleChange}
-                    style={{ margin: "1rem 0" }}
+                    style={{ margin: "1rem 0" ,  width:  resp ? "17ch" :"24ch" }}
                   />
                   <p className="error_message">{errorS.fname}</p>
                   <TextField
@@ -522,12 +424,12 @@ const Login = () => {
                     value={signupUser.lname}
                     onChange={signupHandleChange}
                     required
-                    style={{ margin: "1rem " }}
+                    style={{ margin: "1rem " ,  width:  resp ? "17ch" :"24ch" }}
                   />
                   <p className="error_message">{errorS.lname}</p>
                 </div>
                 <FormControl
-                  sx={{ width: "50ch" }}
+                  sx={{ width:  resp ? "40ch" :"50ch" }}
                   variant="outlined"
                   value={signupUser.password}
                   onChange={signupHandleChange}
@@ -558,7 +460,7 @@ const Login = () => {
                 <p className="error_message">{errorS.password}</p>
 
                 <FormControl
-                  style={{ margin: "1rem 0", width: "50ch" }}
+                  style={{ margin: "1rem 0", width: resp ? "40ch" : "50ch" }}
                   variant="outlined"
                 >
                   <InputLabel htmlFor="outlined-adornment-password">
@@ -581,8 +483,7 @@ const Login = () => {
                   />
                 </FormControl>
                 <p className="error_message">{errorS.email}</p>
-                <div style={{ display: "flex" }}>
-                  <ChangeButton>Change method</ChangeButton>
+                <div style={{ display: "flex" , justifyContent:'center', width:'50ch'}}>
                   <SignupButton type="submit">Create account</SignupButton>
                 </div>
               </Box>
@@ -595,8 +496,8 @@ const Login = () => {
 
   return (
     <>
-      {registrationStatus && <SignUpComponent />}
-      {!registrationStatus && <LoginComponent />}
+      {registrationStatus && SignUpComponent()}
+      {!registrationStatus && LoginComponent()}
     </>
   );
 };
